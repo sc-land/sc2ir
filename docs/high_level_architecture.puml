@@ -1,0 +1,60 @@
+@startuml "SC2IR - High Level Architecture"
+skinparam backgroundColor white
+skinparam componentStyle rectangle
+
+package "SC DSL" {
+  [Tree] as SCTree
+  [Bug] as SCBug
+  [Gene] as SCGene
+  [Ethics] as SCEthics
+  [Specie] as SCSpecie
+
+  SCTree --> SCBug : contains
+  SCBug --> SCGene : contains
+  SCBug --> SCEthics : contains
+  SCGene --> SCSpecie : uses
+}
+
+package "IR" {
+  [IR] as IRMain
+  [Larvie] as IRLarvie
+  [Casts] as IRCasts
+  [Flora] as IRFlora
+  [Instinct] as IRInstinct
+
+  IRMain --> IRLarvie : contains
+  IRLarvie --> IRCasts : contains
+  IRLarvie --> IRInstinct : contains
+  IRCasts --> IRFlora : references
+}
+
+package "SC2IR (Conversion)" {
+  interface "IRFromSC" as IRFromSCTrait
+  interface "LarvieFromBug" as LarvieFromBugTrait
+  interface "CastsFromGene" as CastsFromGeneTrait
+  interface "FloraFromSpecie" as FloraFromSpecieTrait
+  interface "InstinctFromEthics" as InstinctFromEthicsTrait
+
+  IRFromSCTrait --> SCTree : input
+  IRFromSCTrait --> IRMain : output
+
+  LarvieFromBugTrait --> SCBug : input
+  LarvieFromBugTrait --> IRLarvie : output
+
+  CastsFromGeneTrait --> SCGene : input
+  CastsFromGeneTrait --> IRCasts : output
+
+  FloraFromSpecieTrait --> SCSpecie : input
+  FloraFromSpecieTrait --> IRFlora : output
+
+  InstinctFromEthicsTrait --> SCEthics : input
+  InstinctFromEthicsTrait --> IRInstinct : output
+}
+
+SCTree -[dashed]-> IRMain : converted to
+SCBug -[dashed]-> IRLarvie : converted to
+SCGene -[dashed]-> IRCasts : converted to
+SCSpecie -[dashed]-> IRFlora : converted to
+SCEthics -[dashed]-> IRInstinct : converted to
+
+@enduml

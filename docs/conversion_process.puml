@@ -1,0 +1,26 @@
+@startuml "SC2IR - Conversion Process"
+skinparam backgroundColor white
+
+start
+:Parse SC file to produce Tree;
+:Call IR::from_sc(tree);
+
+fork
+  :Process each Bug in Tree;
+  :Convert Bug to Larvie;
+  :Add Larvie to IR.alveolus;
+fork again
+  :For each Gene in Bug;
+  :Convert Gene to Casts;
+  :Add Casts to Larvie.casts;
+  :Set Seal::Vital for each Cast;
+fork again
+  :For each Ethics in Bug;
+  :Convert Ethics to Instinct;
+  :Add Instinct to Larvie.instincts;
+end fork
+
+:Return completed IR structure;
+stop
+
+@enduml

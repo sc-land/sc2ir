@@ -1,0 +1,45 @@
+@startuml "SC2IR - Trait Structure"
+skinparam backgroundColor white
+
+interface "IRFromSC" as IRFromSCTrait {
+  +from_sc(tree: Tree) -> IR
+}
+
+interface "LarvieFromBug" as LarvieFromBugTrait {
+  +from_bug(bug: Bug) -> Larvie
+}
+
+interface "CastsFromGene" as CastsFromGeneTrait {
+  +from_gene(gene: Gene) -> Casts
+}
+
+interface "FloraFromSpecie" as FloraFromSpecieTrait {
+  +from_specie(specie: Specie) -> Flora
+}
+
+interface "InstinctFromEthics" as InstinctFromEthicsTrait {
+  +from_ethics(ethics: Ethics) -> Instinct
+}
+
+class "IR" as IRClass {
+}
+
+class "Larvie" as LarvieClass {
+}
+
+class "Casts" as CastsClass {
+}
+
+class "Flora" as FloraClass {
+}
+
+class "Instinct" as InstinctClass {
+}
+
+IRClass ..|> IRFromSCTrait
+LarvieClass ..|> LarvieFromBugTrait
+CastsClass ..|> CastsFromGeneTrait
+FloraClass ..|> FloraFromSpecieTrait
+InstinctClass ..|> InstinctFromEthicsTrait
+
+@enduml

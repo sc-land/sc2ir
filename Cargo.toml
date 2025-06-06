@@ -1,0 +1,22 @@
+[package]
+name = "sc2ir"
+version = "0.1.0"
+edition = "2024"
+authors = ["SC Dad"]
+description = "Sistema de Conversão IR - Transforma código SC (Smart Contracts) em IR (Intermediate Representation)"
+readme = "README.md"
+repository = "https://github.com/sc-land/sc2ir"
+license = "LICENSE"
+keywords = ["compiler", "smart-contracts", "intermediate-representation", "conversion", "dsl"]
+categories = ["compilers", "development-tools"]
+documentation = "https://docs.rs/sc2ir"
+
+[package.metadata.docs.rs]
+all-features = true
+rustdoc-args = ["--cfg", "docsrs"]
+default-target = "x86_64-unknown-linux-gnu"
+targets = ["x86_64-apple-darwin", "x86_64-pc-windows-msvc"]
+
+[dependencies]
+ir = { path = "/Users/fera/dev/w/sc-land/ir" }
+sc_dsl = { path="/Users/fera/dev/w/sc-land/dsl" }

@@ -1,0 +1,84 @@
+@startuml "SC2IR - Data Model"
+skinparam backgroundColor white
+
+package "SC DSL Types" {
+  class Tree {
+    +sc: SC
+  }
+
+  class Bug {
+    +specie: Specie
+    +genes: Vec<Gene>
+    +ethics: Vec<Ethics>
+  }
+
+  class Gene {
+    +tag: Emitter
+    +specie: Specie
+  }
+
+  class Ethics {
+    +tag: Emitter
+  }
+
+  class Specie {
+    +raw: String
+  }
+
+  class Emitter {
+    +raw: String
+  }
+
+  Tree o-- "1" Bug
+  Bug o-- "*" Gene
+  Bug o-- "*" Ethics
+  Gene o-- "1" Specie
+  Gene o-- "1" Emitter
+  Ethics o-- "1" Emitter
+}
+
+package "IR Types" {
+  class IR {
+    +alveolus: Vec<Alveolus>
+  }
+
+  enum Alveolus {
+    Larvie(Larvie)
+  }
+
+  class Larvie {
+    +primor: String
+    +casts: Vec<Casts>
+    +instincts: Vec<Instinct>
+  }
+
+  class Casts {
+    +primor: String
+    +flora: Flora
+    +seals: Vec<Seal>
+  }
+
+  enum Flora {
+    Int
+    Bool
+    Str
+    Bug(String)
+  }
+
+  enum Seal {
+    Vital
+  }
+
+  class Instinct {
+    +echo: String
+  }
+
+  IR o-- "*" Alveolus
+  Alveolus o-- "1" Larvie
+  Larvie o-- "*" Casts
+  Larvie o-- "*" Instinct
+  Casts o-- "1" Flora
+  Casts o-- "*" Seal
+}
+
+@enduml
