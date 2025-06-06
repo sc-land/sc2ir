@@ -18,5 +18,5 @@ default-target = "x86_64-unknown-linux-gnu"
 targets = ["x86_64-apple-darwin", "x86_64-pc-windows-msvc"]
 
 [dependencies]
-ir = { path = "/Users/fera/dev/w/sc-land/ir" }
-sc_dsl = { path="/Users/fera/dev/w/sc-land/dsl" }
+ir = { git = "https://github.com/sc-land/ir.git" }
+sc_dsl = { git = "https://github.com/sc-land/dsl.git" }
